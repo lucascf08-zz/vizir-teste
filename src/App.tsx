@@ -14,6 +14,7 @@ import {
 import Header from "./Views/Header/Header";
 import Main from "./Views/Main/Main";
 import Calculo from "./Views/Calculo/Calculo";
+import Planos from "./Views/Planos/Planos";
 
 function App() {
   const mainRef = useRef<HTMLDivElement>();
@@ -23,8 +24,8 @@ function App() {
       <Header mainRef={mainRef} calculoRef={calculoRef} />
       <Main anchor={mainRef} />
       <Calculo anchor={calculoRef} />
+      <Planos />
 
-      <StyledPlanosSpan></StyledPlanosSpan>
       <StyledFooter></StyledFooter>
     </StyledApp>
   );

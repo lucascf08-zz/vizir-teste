@@ -17,12 +17,10 @@ interface multiAutoCompleteProps {
   options: { label: string; value: string | number }[];
   label: string;
 
-  onInputChange: (e: string) => void;
-  inputValue: string;
-
   onChange: (val: { label: string; value: string | number }[]) => void;
   value: { value: string | number; label: string }[];
   multiple?: boolean;
+  inputRef?: React.MutableRefObject<HTMLInputElement | undefined>;
 }
 
 const CalculatorInput = ({ ...props }: autoCompleteProps) => {
@@ -54,21 +52,23 @@ const CalculatorInput = ({ ...props }: autoCompleteProps) => {
 export const MultiCalculatorInput = ({ ...props }: multiAutoCompleteProps) => {
   return (
     <Autocomplete
+      openOnFocus
       multiple
       fullWidth
-      isOptionEqualToValue={(o, v) => o.value === v.value}
       options={props.options}
       getOptionLabel={(option) => option.label}
+      value={props.value}
+      onChange={(e, val) => props.onChange(val)}
+      ref={props.inputRef}
       renderInput={(params) => (
         <TextField
           {...params}
           label={props.label}
           variant="standard"
-          value={props.value}
           color="secondary"
         />
       )}
-    ></Autocomplete>
+    />
   );
 };
 

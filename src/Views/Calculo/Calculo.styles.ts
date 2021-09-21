@@ -6,8 +6,14 @@ export const StyledCalculo = withTheme(
     background-color: ${(props) => props.theme.palette.primary.main};
 
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 60rem) {
+      flex-direction: row;
+    }
     align-items: stretch;
     justify-content: space-between;
+    flex-wrap: wrap;
     #title-div {
       width: 40%;
     }

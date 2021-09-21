@@ -20,33 +20,9 @@ const Header = ({ ...props }: headerProps) => {
 
   return (
     <StyledHeader>
-      <div id="logo-div">
+      <div id="top-div">
         <Logo />
-      </div>
-      <div id="title-span">
-        <div id="title">
-          Pague menos,
-          <br />
-          <strong>Fale mais</strong>
-        </div>
 
-        <div id="txt">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <Button
-            variant="outlined"
-            color="secondary"
-            style={{ width: "50%" }}
-            onClick={() => scrollToRef(props.mainRef)}
-          >
-            Saiba mais
-          </Button>
-        </div>
-      </div>
-
-      <div id="toolbar-container">
         <div id="toolbar">
           <Button
             variant="text"
@@ -64,6 +40,29 @@ const Header = ({ ...props }: headerProps) => {
           </Button>
           <Button variant="contained" color="secondary">
             Contratar
+          </Button>
+        </div>
+      </div>
+
+      <div id="title-span">
+        <div id="title">
+          Pague menos,
+          <br />
+          <strong>Fale mais</strong>
+        </div>
+
+        <div id="txt">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <Button
+            variant="outlined"
+            color="secondary"
+            style={{ maxWidth: "50%", minWidth: "10rem" }}
+            onClick={() => scrollToRef(props.mainRef)}
+          >
+            Saiba mais
           </Button>
         </div>
       </div>

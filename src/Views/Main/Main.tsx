@@ -23,7 +23,7 @@ interface mainProps {
 const Main = ({ ...props }: mainProps) => {
   return (
     <StyledMain ref={props.anchor}>
-      <div className="title-div">
+      <div className="title-div" id="title-div">
         <h3>Vantagens do FaleMais</h3>
       </div>
       <div id="vantagens-div">

@@ -3,31 +3,43 @@ import styled from "styled-components";
 import bg from "../../assets/img-bg.png";
 
 export const StyledHeader = withTheme(styled.div`
-  display: grid;
+  display: flex;
 
-  grid-template-columns: 15vw 35vw 50vw;
+  flex-direction: column;
+  padding: 2rem;
   justify-content: flex-start;
 
   background: url(${bg});
+  @media (max-width: 40rem) {
+    background-position: 50%;
+  }
+
   background-size: cover;
   background-color: ${(props) => props.theme.palette.primary.main};
   background-repeat: no-repeat;
-
-  #logo-div {
+  #top-div {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: 2rem;
+
+    @media (min-width: 60rem) {
+      justify-content: space-between;
+    }
+    #toolbar {
+      display: flex;
+      gap: 2rem;
+    }
   }
 
   #title-span {
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
 
     #title {
-      grid-row: 2 / span 1;
+      grid-column: 3 / span 4;
       font-size: clamp(4rem, 5vw, 7rem);
       font-weight: 400;
       span {
@@ -40,7 +52,7 @@ export const StyledHeader = withTheme(styled.div`
       flex-direction: column;
       gap: 2rem;
       font-size: x-large;
-      grid-row: 3 / span 1;
+      grid-column: 3 / span 4;
     }
   }
   #toolbar-container {
@@ -49,9 +61,5 @@ export const StyledHeader = withTheme(styled.div`
     align-items: flex-end;
     justify-content: flex-start;
     padding: 2rem;
-    #toolbar {
-      display: flex;
-      gap: 2rem;
-    }
   }
 `);

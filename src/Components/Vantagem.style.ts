@@ -3,13 +3,26 @@ import styled from "styled-components";
 
 export const StyledVantagem = withTheme(
   styled.div`
+    display: flex;
     #inner-div {
       display: flex;
-      align-items: stretch;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
       gap: 2rem;
+
+      @media (min-width: 60rem) {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+        #text-div {
+          width: 40%;
+        }
+        #content-div {
+          width: 60%;
+        }
+      }
+
       #text-div {
-        width: 40%;
         display: flex;
         flex-direction: column;
         padding: 2rem;
@@ -24,7 +37,6 @@ export const StyledVantagem = withTheme(
         }
       }
       #content-div {
-        width: 60%;
         display: flex;
 
         align-items: center;

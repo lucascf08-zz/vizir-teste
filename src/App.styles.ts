@@ -6,8 +6,12 @@ export const StyledApp = withTheme(styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
-  grid-template-rows: 80vh 100vh 40vh 80vh 20vh;
+  grid-template-rows: auto;
   justify-content: flex-start;
+
+  @media (min-width: 60rem) {
+    grid-template-rows: 80vh 100vh 40vh 80vh 20vh;
+  }
 `);
 
 export const StyledMain = withTheme(styled.div`
