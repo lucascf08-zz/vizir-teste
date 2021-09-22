@@ -59,11 +59,17 @@ const Main = ({ ...props }: mainProps) => {
               <TableCell className="table-head">$/min</TableCell>
             </TableHead>
             <TableBody>
-              {mockArray.map((mock) => (
+              {mockArray.map((mock, i) => (
                 <TableRow>
-                  <TableCell className="table-cell">{mock.origem}</TableCell>
-                  <TableCell className="table-cell">{mock.destino}</TableCell>
-                  <TableCell className="table-cell">{mock.money}</TableCell>
+                  <TableCell key={mock.origem} className="table-cell">
+                    {mock.origem}
+                  </TableCell>
+                  <TableCell key={mock.destino} className="table-cell">
+                    {mock.destino}
+                  </TableCell>
+                  <TableCell key={mock.money} className="table-cell">
+                    {mock.money}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

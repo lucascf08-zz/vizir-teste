@@ -1,4 +1,3 @@
-import { menuClasses } from "@material-ui/core";
 import { StyledFootMenu } from "./FootMenu.styles";
 interface footMenuProps {
   menus: string[];

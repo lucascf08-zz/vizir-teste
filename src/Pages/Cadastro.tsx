@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { _UF } from "../types";
 import { cepApi, useGetEnderecoMutation } from "../store/cepApi";
 import { useEffect } from "react";
+import { watch } from "fs";
 
 interface dadosForm {
   nome: string;
@@ -22,7 +23,7 @@ interface dadosForm {
   estado: _UF;
   //pags
   nomeCartao: string;
-  numcartao: string;
+  numCartao: string;
   dataVencimento: Date;
   cvc: string;
 }
@@ -34,7 +35,7 @@ const Cadastro = () => {
   const carregarEndereco = async () => {
     try {
       const result = await getAddress(form.getValues("cep")).unwrap();
-      const { uf, localidade, logradouro, bairro, erro } = result;
+      const { uf, localidade, logradouro, erro } = result;
 
       if (!erro) {
         form.setValue("estado", uf as _UF);
@@ -78,6 +79,7 @@ const Cadastro = () => {
               {...form.register("nome", { required: "Campo obrigatório!" })}
               error={!!form.formState.errors.nome}
               helperText={form.formState.errors.nome?.message}
+              InputLabelProps={{ shrink: true }}
             />
 
             <TextField
@@ -89,6 +91,7 @@ const Cadastro = () => {
               })}
               error={!!form.formState.errors.sobrenome}
               helperText={form.formState.errors.sobrenome?.message}
+              InputLabelProps={{ shrink: true }}
             />
 
             <TextField
@@ -100,6 +103,7 @@ const Cadastro = () => {
               })}
               error={!!form.formState.errors.telefone}
               helperText={form.formState.errors.telefone?.message}
+              InputLabelProps={{ shrink: true }}
             />
 
             <TextField
@@ -111,6 +115,7 @@ const Cadastro = () => {
               })}
               error={!!form.formState.errors.email}
               helperText={form.formState.errors.email?.message}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
           <Divider light />
@@ -123,8 +128,9 @@ const Cadastro = () => {
               fullWidth
               style={{ gridArea: "cep" }}
               {...form.register("cep")}
+              InputLabelProps={{ shrink: true }}
             />
-            <a href="" style={{ gridArea: "link" }}>
+            <a href="" style={{ gridArea: "link", lineHeight: "3rem" }}>
               Não sei meu cep
             </a>
             <TextField
@@ -133,6 +139,7 @@ const Cadastro = () => {
               fullWidth
               style={{ gridArea: "end" }}
               {...form.register("endereco")}
+              InputLabelProps={{ shrink: true }}
             />
             <TextField
               label="Número"
@@ -140,6 +147,7 @@ const Cadastro = () => {
               fullWidth
               style={{ gridArea: "num" }}
               {...form.register("numero")}
+              InputLabelProps={{ shrink: true }}
             />
             <TextField
               label="Complemento"
@@ -147,6 +155,7 @@ const Cadastro = () => {
               fullWidth
               style={{ gridArea: "com" }}
               {...form.register("complemento")}
+              InputLabelProps={{ shrink: true }}
             />
 
             <TextField
@@ -155,6 +164,7 @@ const Cadastro = () => {
               style={{ gridArea: "cid" }}
               fullWidth
               {...form.register("cidade")}
+              InputLabelProps={{ shrink: true }}
             />
 
             <TextField
@@ -163,9 +173,11 @@ const Cadastro = () => {
               fullWidth
               style={{ gridArea: "uf" }}
               {...form.register("estado")}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
           <Divider light />
+
           <div id="detalhes">
             <h3>Detalhes da contratação</h3>
             <div id="inner-div">
@@ -174,6 +186,41 @@ const Cadastro = () => {
                 <strong>$00,00/</strong>mês
               </span>
             </div>
+          </div>
+
+          <h3>Pagamento</h3>
+          <div id="field-dados-pagamento">
+            <TextField
+              label="Nome no cartão"
+              color="secondary"
+              fullWidth
+              {...form.register("nomeCartao")}
+              InputLabelProps={{ shrink: true }}
+            />
+
+            <TextField
+              label="Número do cartão"
+              color="secondary"
+              fullWidth
+              {...form.register("numCartao")}
+              InputLabelProps={{ shrink: true }}
+            />
+
+            <TextField
+              label={form.watch("cvc") !== "" ? "" : "CVC"}
+              color="secondary"
+              fullWidth
+              {...form.register("cvc")}
+              InputLabelProps={{ shrink: false }}
+            />
+
+            <TextField
+              label={form.watch("dataVencimento") !== undefined ? "" : "mm/aa"}
+              color="secondary"
+              fullWidth
+              {...form.register("dataVencimento")}
+              InputLabelProps={{ shrink: false }}
+            />
           </div>
           <Button
             type="submit"

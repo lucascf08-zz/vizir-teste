@@ -13,12 +13,15 @@ export const StyledCalculo = withTheme(
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
+
+      #title-div {
+        width: 30%;
+      }
     }
 
     justify-content: space-between;
     flex-wrap: wrap;
     #title-div {
-      width: 30%;
       display: flex;
       flex-direction: column;
       > * {

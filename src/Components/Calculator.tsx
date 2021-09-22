@@ -2,16 +2,9 @@ import { useEffect, useRef, useState } from "react";
 //styles
 import { CalcCell, StyledCalculator } from "./Calculator.styles";
 //components
-
+import { StdMultiSelect, StdSelect } from "./CalculatorInput";
 //material-ui
-import {
-  Button,
-  Collapse,
-  ListItem,
-  MenuItem,
-  Select,
-  TextField,
-} from "@material-ui/core";
+import { Button, Collapse } from "@material-ui/core";
 //mocks
 import {
   mockDestinoOptions,
@@ -19,7 +12,7 @@ import {
   mockPlanoOptions,
   mockTempoOptions,
 } from "../mocks";
-import { StdMultiSelect, StdSelect } from "./CalculatorInput";
+
 import { useHistory } from "react-router";
 
 const Calculator = () => {
