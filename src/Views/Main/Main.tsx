@@ -52,7 +52,7 @@ const Main = ({ ...props }: mainProps) => {
           titleText="Excepteur sint occa ecat cupidatat"
           bodyText="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         >
-          <Table padding="none" id="table" size="medium">
+          <Table id="table">
             <TableHead>
               <TableCell className="table-head">Origem</TableCell>
               <TableCell className="table-head">Destino</TableCell>
@@ -61,9 +61,9 @@ const Main = ({ ...props }: mainProps) => {
             <TableBody>
               {mockArray.map((mock) => (
                 <TableRow>
-                  <TableCell>{mock.origem}</TableCell>
-                  <TableCell>{mock.destino}</TableCell>
-                  <TableCell>{mock.money}</TableCell>
+                  <TableCell className="table-cell">{mock.origem}</TableCell>
+                  <TableCell className="table-cell">{mock.destino}</TableCell>
+                  <TableCell className="table-cell">{mock.money}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

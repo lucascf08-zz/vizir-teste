@@ -14,9 +14,17 @@ export const mockOrigemOptions: { value: string; label: string }[] = [
   { value: "015", label: "011 - Consequat" },
 ];
 
-export const mockPlanoOptions: { value: string; label: string }[] = [
+export const mockDestinoOptions: { value: string; label: string }[] = [
   { value: "", label: "" },
+  { value: "024", label: "024 - Rio de Janeiro" },
+];
+
+export const mockTempoOptions: { value: string; label: string }[] = [
+  { value: "", label: "" },
+  { value: "60", label: "60 mins" },
+];
+export const mockPlanoOptions: { value: string; label: string }[] = [
   { value: "30", label: "faleMais30" },
-  { value: "30", label: "faleMais60" },
-  { value: "30", label: "faleMais120" },
+  { value: "60", label: "faleMais60" },
+  { value: "120", label: "faleMais120" },
 ];

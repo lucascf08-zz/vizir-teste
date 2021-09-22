@@ -21,19 +21,19 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  .title-div{
-    grid-row: 1 / span 3;
-    display: flex;
-    flex-direction: column;
+  h3, h5, h4{
+    margin: 0;
+  }
 
- 
-    text-justify: left;
-  
+  .title-div{
+   display: flex;
+    align-items: center;
+    justify-content: center;
     h3 {
-      font-size: xxx-large;
-      text-justify: left;
-      padding: 2rem;
-    }  
+      font-size: clamp(2rem, 3vw, 5rem);
+      padding: 0 2rem;
+    }
+  
 }
 
 

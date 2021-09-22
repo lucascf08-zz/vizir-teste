@@ -1,75 +1,90 @@
-import { Autocomplete, TextField } from "@material-ui/core";
-import { isPropertySignature } from "typescript";
+import {
+  Box,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+} from "@material-ui/core";
+import { Dispatch, SetStateAction } from "react";
 
-interface autoCompleteProps {
-  options: { label: string; value: string | number }[];
+interface stdSelectProps {
+  value: string | number;
   label: string;
+  onChange: Dispatch<SetStateAction<string>>;
 
-  onInputChange: (e: string) => void;
-  inputValue: string;
-
-  onChange: (e: { value: string | number; label: string }) => void;
-  value: { value: string | number; label: string };
+  options: { label: string; value: string }[];
   multiple?: boolean;
 }
 
-interface multiAutoCompleteProps {
-  options: { label: string; value: string | number }[];
-  label: string;
+export const StdSelect = ({ ...props }: stdSelectProps) => {
+  return (
+    <TextField
+      select
+      value={props.value}
+      onChange={(e) => props.onChange(e.target.value)}
+      label={props.value === "" && props.label}
+      color="secondary"
+      variant="standard"
+      InputProps={{ disableUnderline: true }}
+      InputLabelProps={{ shrink: false }}
+    >
+      {props.options.map((o, i) => (
+        <MenuItem key={i} value={o.value}>
+          {o.label}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+};
 
-  onChange: (val: { label: string; value: string | number }[]) => void;
-  value: { value: string | number; label: string }[];
+interface stdMultiSelectProps {
+  value: string[];
+  label: string;
+  onChange: Dispatch<SetStateAction<string[]>>;
+
+  options: { label: string; value: string }[];
   multiple?: boolean;
-  inputRef?: React.MutableRefObject<HTMLInputElement | undefined>;
 }
 
-const CalculatorInput = ({ ...props }: autoCompleteProps) => {
+export const StdMultiSelect = ({ ...props }: stdMultiSelectProps) => {
+  const option = props.value;
+  const handleChange = (event: SelectChangeEvent<typeof option>) => {
+    const {
+      target: { value },
+    } = event;
+    props.onChange(typeof value === "string" ? value.split(",") : value);
+  };
+
   return (
-    <Autocomplete
-      fullWidth
-      isOptionEqualToValue={(o, v) => o.value === v.value}
-      options={props.options}
-      getOptionLabel={(option) => option.label}
-      inputValue={props.inputValue}
-      value={props.value}
-      onChange={(e, val) =>
-        val ? props.onChange(val) : props.onChange({ value: "", label: "" })
-      }
-      onInputChange={(e, val) => props.onInputChange(val)}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label={props.label}
-          variant="standard"
-          value={props.value}
-          color="secondary"
-        />
-      )}
-    ></Autocomplete>
+    <FormControl>
+      <InputLabel shrink={false} id={`${props.label}-select`} color="secondary">
+        {props.value.length > 0 ? "" : props.label}
+      </InputLabel>
+      <Select
+        disableUnderline
+        labelId={`${props.label}-select`}
+        multiple
+        value={props.value}
+        onChange={handleChange}
+        color="secondary"
+        variant="standard"
+        renderValue={(selected) => (
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+            {selected.map((value) => (
+              <Chip key={value} label={value} />
+            ))}
+          </Box>
+        )}
+      >
+        {props.options.map((o, i) => (
+          <MenuItem key={o.value} value={o.value}>
+            {o.label}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
-
-export const MultiCalculatorInput = ({ ...props }: multiAutoCompleteProps) => {
-  return (
-    <Autocomplete
-      openOnFocus
-      multiple
-      fullWidth
-      options={props.options}
-      getOptionLabel={(option) => option.label}
-      value={props.value}
-      onChange={(e, val) => props.onChange(val)}
-      ref={props.inputRef}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label={props.label}
-          variant="standard"
-          color="secondary"
-        />
-      )}
-    />
-  );
-};
-
-export default CalculatorInput;

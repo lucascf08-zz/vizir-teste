@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 
+import Router from "./Router";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import GlobalStyle from "./global.styles";
@@ -15,7 +15,7 @@ ReactDOM.render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={MainTheme}>
           <GlobalStyle />
-          <App />
+          <Router />
         </ThemeProvider>
       </StyledEngineProvider>
     </Provider>

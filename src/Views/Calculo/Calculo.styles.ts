@@ -8,17 +8,25 @@ export const StyledCalculo = withTheme(
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @media (min-width: 60rem) {
       flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
     }
-    align-items: stretch;
+
     justify-content: space-between;
     flex-wrap: wrap;
     #title-div {
-      width: 40%;
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      > * {
+        padding: 1rem 2rem;
+      }
     }
     #calculator-div {
-      width: 60%;
+      width: 70%;
       display: flex;
       justify-content: center;
       align-items: center;

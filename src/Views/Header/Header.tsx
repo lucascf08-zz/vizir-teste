@@ -6,6 +6,7 @@ import { Button } from "@material-ui/core";
 import { StyledHeader } from "./Header.styles";
 //assets
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import { useHistory } from "react-router-dom";
 
 interface headerProps {
   mainRef: MutableRefObject<HTMLDivElement | undefined>;
@@ -17,6 +18,8 @@ const Header = ({ ...props }: headerProps) => {
     ref.current !== undefined &&
       ref.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  const history = useHistory();
 
   return (
     <StyledHeader>
@@ -38,7 +41,11 @@ const Header = ({ ...props }: headerProps) => {
           >
             Cálculo
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => history.push("/cadastro")}
+          >
             Contratar
           </Button>
         </div>

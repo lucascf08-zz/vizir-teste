@@ -3,18 +3,14 @@ import React, { useRef } from "react";
 //mui
 
 //styles
-import {
-  StyledApp,
-  StyledFaleMaisSpan,
-  StyledFooter,
-  StyledPlanosSpan,
-} from "./App.styles";
+import { StyledApp } from "./App.styles";
 
 //views
-import Header from "./Views/Header/Header";
-import Main from "./Views/Main/Main";
-import Calculo from "./Views/Calculo/Calculo";
-import Planos from "./Views/Planos/Planos";
+import Header from "../Views/Header/Header";
+import Main from "../Views/Main/Main";
+import Calculo from "../Views/Calculo/Calculo";
+import Planos from "../Views/Planos/Planos";
+import Footer from "../Views/Footer/Footer";
 
 function App() {
   const mainRef = useRef<HTMLDivElement>();
@@ -25,8 +21,7 @@ function App() {
       <Main anchor={mainRef} />
       <Calculo anchor={calculoRef} />
       <Planos />
-
-      <StyledFooter></StyledFooter>
+      <Footer />
     </StyledApp>
   );
 }
