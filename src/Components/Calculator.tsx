@@ -29,17 +29,18 @@ const Calculator = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (origem === "011") {
-      setTempo("60");
+    const handleSideEffect = () => {
+      if (origem === "011") {
+        setTempo("60");
+        setDestino("024");
+        inputRef.current?.click();
+      } else if (origem === "") {
+        setDestino("");
+        setTempo("");
+      }
+    };
 
-      setDestino("024");
-
-      inputRef.current?.click();
-    } else if (origem === "") {
-      setDestino("");
-
-      setTempo("");
-    }
+    handleSideEffect();
   }, [origem]);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const Calculator = () => {
       setTotal("0,00");
       setOpen(false);
     }
-  }, [planos, origem, destino, setTempo]);
+  }, [planos, origem, destino, tempo]);
 
   return (
     <StyledCalculator>

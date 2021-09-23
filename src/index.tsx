@@ -10,15 +10,15 @@ import MainTheme from "./theme";
 import { StyledEngineProvider, ThemeProvider } from "@material-ui/core/styles";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={MainTheme}>
-          <GlobalStyle />
-          <Router />
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </Provider>
-  </React.StrictMode>,
+  //<React.StrictMode>
+  <Provider store={store}>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={MainTheme}>
+        <GlobalStyle />
+        <Router />
+      </ThemeProvider>
+    </StyledEngineProvider>
+  </Provider>,
+  //</React.StrictMode>,
   document.getElementById("root")
 );

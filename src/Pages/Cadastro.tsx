@@ -40,24 +40,25 @@ const Cadastro = () => {
 
   const [getAddress] = useGetEnderecoMutation();
 
-  const carregarEndereco = async () => {
-    try {
-      const result = await getAddress(form.getValues("cep")).unwrap();
-      const { uf, localidade, logradouro, erro } = result;
-
-      if (!erro) {
-        form.setValue("estado", uf as _UF);
-        form.setValue("cidade", localidade);
-        form.setValue("endereco", logradouro);
-        console.log("success");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    form.watch("cep").length === 8 && carregarEndereco();
+    const cep = form.watch("cep");
+    const carregarEndereco = async () => {
+      try {
+        const result = await getAddress(form.getValues("cep")).unwrap();
+        const { uf, localidade, logradouro, erro } = result;
+
+        if (!erro) {
+          form.setValue("estado", uf as _UF);
+          form.setValue("cidade", localidade);
+          form.setValue("endereco", logradouro);
+          console.log("success");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    cep.length === 8 && carregarEndereco();
   }, [form.watch("cep")]);
 
   const onSubmit = (data: dadosForm) => {
