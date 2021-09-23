@@ -74,7 +74,10 @@ export const StdMultiSelect = ({ ...props }: stdMultiSelectProps) => {
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
             {selected.map((value) => (
-              <Chip key={value} label={value} />
+              <Chip
+                key={value}
+                label={props.options.find((o) => o.value === value)?.label}
+              />
             ))}
           </Box>
         )}

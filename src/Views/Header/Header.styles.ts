@@ -9,7 +9,7 @@ export const StyledHeader = withTheme(styled.div`
   padding: 2rem;
   justify-content: flex-start;
 
-  background: url(${bg});
+  background: url(${bg}) no-repeat center center;
   @media (max-width: 40rem) {
     background-position: 50%;
   }
