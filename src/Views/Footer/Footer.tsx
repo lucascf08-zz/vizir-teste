@@ -38,7 +38,7 @@ const Footer = () => {
       <Divider light />
       <div id="logo-span">
         <Logo />
-        <span>2021</span>
+        <span>2021 by Lucas C. Ferreira</span>
       </div>
     </StyledFooter>
   );

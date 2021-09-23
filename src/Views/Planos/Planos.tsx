@@ -1,9 +1,11 @@
 import { StyledPlanos } from "./Planos.styles";
 import StdCard from "../../Components/StdCard";
-
-const Planos = () => {
+interface planosProps {
+  anchor: React.MutableRefObject<HTMLDivElement | undefined>;
+}
+const Planos = ({ ...props }: planosProps) => {
   return (
-    <StyledPlanos>
+    <StyledPlanos ref={props.anchor}>
       <h1>Planos</h1>
       <p>
         Excepteur sint occaecat cupidatatnon proident, sunt in culpa qui officia

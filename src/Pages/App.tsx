@@ -15,12 +15,13 @@ import Footer from "../Views/Footer/Footer";
 function App() {
   const mainRef = useRef<HTMLDivElement>();
   const calculoRef = useRef<HTMLDivElement>();
+  const planosRef = useRef<HTMLDivElement>();
   return (
     <StyledApp>
-      <Header mainRef={mainRef} calculoRef={calculoRef} />
+      <Header mainRef={mainRef} calculoRef={calculoRef} planosRef={planosRef} />
       <Main anchor={mainRef} />
       <Calculo anchor={calculoRef} />
-      <Planos />
+      <Planos anchor={planosRef} />
       <Footer />
     </StyledApp>
   );

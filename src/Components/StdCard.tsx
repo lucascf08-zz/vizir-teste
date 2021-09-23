@@ -30,7 +30,9 @@ const StdCard = ({ ...props }: cardProps) => {
       {props.type !== "x" && (
         <MonthlyPrice reais="00" cents="00" color="black" />
       )}
-      {props.type === "x" && <h3>Customize o plano do seu jeito!</h3>}
+      {props.type === "x" && (
+        <h3 style={{ padding: "1.2rem" }}>Customize o plano do seu jeito!</h3>
+      )}
       <h5>For organizing every corner of your life</h5>
       <h4>everything in personal plus:</h4>
       <h5>
