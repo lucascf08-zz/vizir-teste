@@ -31,6 +31,12 @@ export const StyledCadastro = withTheme(styled.div`
       flex-direction: column;
       gap: 2rem;
     }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
     @media (min-width: 60rem) {
       display: grid;
       grid-template-columns: 20vw 60vw 20vw;
@@ -69,6 +75,18 @@ export const StyledCadastro = withTheme(styled.div`
             align-items: center;
             justify-content: space-between;
           }
+        }
+      }
+      #field-dados-pagamento {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        #pagamento-2 {
+          display: grid;
+          grid-template-columns: repeat (2, 1fr);
+          grid-template-areas:
+            "i2 i2"
+            "i3 i4";
         }
       }
     }

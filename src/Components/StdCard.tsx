@@ -4,10 +4,12 @@ import Blob30 from "../assets/blob1.svg";
 import Blob60 from "../assets/blob2.svg";
 import Blob120 from "../assets/blob3.svg";
 import Blobx from "../assets/blob4.svg";
-
 import { ReactComponent as Check } from "../assets/check.svg";
+//components
 import MonthlyPrice from "./MonthlyPrice";
-import { Button, SvgIcon } from "@material-ui/core";
+//mui
+import { Button } from "@material-ui/core";
+//router
 import { useHistory } from "react-router";
 
 interface cardProps {
@@ -19,10 +21,10 @@ const StdCard = ({ ...props }: cardProps) => {
 
   return (
     <StyledStdCard>
-      {props.type === "30" && <img src={Blob30} />}
-      {props.type === "60" && <img src={Blob60} />}
-      {props.type === "120" && <img src={Blob120} />}
-      {props.type === "x" && <img src={Blobx} />}
+      {props.type === "30" && <img src={Blob30} alt="blob30" />}
+      {props.type === "60" && <img src={Blob60} alt="blob60" />}
+      {props.type === "120" && <img src={Blob120} alt="blob120" />}
+      {props.type === "x" && <img src={Blobx} alt="blobx" />}
 
       <h4>{props.label}</h4>
       {props.type !== "x" && (

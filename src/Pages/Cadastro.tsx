@@ -1,13 +1,19 @@
 import { StyledCadastro } from "./Cadastro.styles";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 
-import { Link } from "react-router-dom";
-import { Button, Divider, TextField } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
+import { Button, Divider, TextField, InputAdornment } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { _UF } from "../types";
-import { cepApi, useGetEnderecoMutation } from "../store/cepApi";
+import { useGetEnderecoMutation } from "../store/cepApi";
 import { useEffect } from "react";
-import { watch } from "fs";
+//assets
+import Visa from "../assets/Visa.png";
+import AmEx from "../assets/AmEx.png";
+import Mastercard from "../assets/Mastercard.png";
+import Discovery from "../assets/Discovery.png";
+import cvc from "../assets/cvc.png";
+import { ReactComponent as Seta } from "../assets/Seta.svg";
 
 interface dadosForm {
   nome: string;
@@ -24,13 +30,15 @@ interface dadosForm {
   //pags
   nomeCartao: string;
   numCartao: string;
-  dataVencimento: Date;
+  dataVencimento: string;
   cvc: string;
 }
 
 const Cadastro = () => {
   const form = useForm<dadosForm>({ mode: "all" });
-  const [getAddress, { isLoading }] = useGetEnderecoMutation();
+  const history = useHistory();
+
+  const [getAddress] = useGetEnderecoMutation();
 
   const carregarEndereco = async () => {
     try {
@@ -54,12 +62,15 @@ const Cadastro = () => {
 
   const onSubmit = (data: dadosForm) => {
     console.log(JSON.stringify(data));
+    history.push("/sucesso");
   };
 
   return (
     <StyledCadastro>
       <header>
-        <Link to="/">Voltar para a página inicial</Link>
+        <Link to="/" style={{ display: "flex", gap: "1rem" }}>
+          <Seta /> Voltar para a página inicial
+        </Link>
         <Logo className="logo" />
       </header>
 
@@ -71,7 +82,7 @@ const Cadastro = () => {
           onSubmit={form.handleSubmit((data) => onSubmit(data))}
         >
           <h3>Dados pessoais</h3>
-          <div id="field-dados-pessoais">
+          <div id="field-dados-pessoais" className="form-field">
             <TextField
               label="Nome"
               color="secondary"
@@ -121,7 +132,7 @@ const Cadastro = () => {
           <Divider light />
 
           <h3>Endereço de cobrança</h3>
-          <div id="field-dados-endereco">
+          <div id="field-dados-endereco" className="form-field">
             <TextField
               label="Cep"
               color="secondary"
@@ -189,38 +200,65 @@ const Cadastro = () => {
           </div>
 
           <h3>Pagamento</h3>
-          <div id="field-dados-pagamento">
-            <TextField
-              label="Nome no cartão"
-              color="secondary"
-              fullWidth
-              {...form.register("nomeCartao")}
-              InputLabelProps={{ shrink: true }}
-            />
+          <div id="field-dados-pagamento" className="form-field">
+            <div id="pagamento-1" className="form-field">
+              <TextField
+                label="Nome no cartão"
+                color="secondary"
+                fullWidth
+                style={{ gridArea: "i1" }}
+                {...form.register("nomeCartao")}
+                InputLabelProps={{ shrink: true }}
+              />
+            </div>
+            <div id="pagamento-2" className="form-field">
+              <TextField
+                label="Número do cartão"
+                color="secondary"
+                fullWidth
+                {...form.register("numCartao")}
+                style={{ gridArea: "i2" }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      style={{ display: "flex", gap: ".5rem" }}
+                    >
+                      <img src={Visa} alt="visa" />
+                      <img src={Mastercard} alt="master" />
+                      <img src={AmEx} alt="amex" />
+                      <img src={Discovery} alt="discovery" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-            <TextField
-              label="Número do cartão"
-              color="secondary"
-              fullWidth
-              {...form.register("numCartao")}
-              InputLabelProps={{ shrink: true }}
-            />
+              <TextField
+                label={form.watch("cvc") !== "" ? "" : "CVC"}
+                color="secondary"
+                fullWidth
+                {...form.register("cvc")}
+                style={{ gridArea: "i4" }}
+                InputLabelProps={{ shrink: false }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <img src={cvc} alt="cvc" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
 
-            <TextField
-              label={form.watch("cvc") !== "" ? "" : "CVC"}
-              color="secondary"
-              fullWidth
-              {...form.register("cvc")}
-              InputLabelProps={{ shrink: false }}
-            />
-
-            <TextField
-              label={form.watch("dataVencimento") !== undefined ? "" : "mm/aa"}
-              color="secondary"
-              fullWidth
-              {...form.register("dataVencimento")}
-              InputLabelProps={{ shrink: false }}
-            />
+              <TextField
+                label={form.watch("dataVencimento") !== "" ? "" : "mm/aa"}
+                color="secondary"
+                fullWidth
+                style={{ gridArea: "i3" }}
+                {...form.register("dataVencimento")}
+                InputLabelProps={{ shrink: false }}
+              />
+            </div>
           </div>
           <Button
             type="submit"

@@ -31,7 +31,7 @@ const Main = ({ ...props }: mainProps) => {
           titleText="Lorem ipsum dolor sit amet"
           bodyText="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         >
-          <img src={phones} />
+          <img src={phones} alt="phones" />
         </Vantagem>
 
         <Vantagem
